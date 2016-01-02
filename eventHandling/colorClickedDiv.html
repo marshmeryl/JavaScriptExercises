@@ -1,0 +1,57 @@
+<html>
+<head>
+	<style media="screen" type="text/css">
+
+		.no-color {
+			background-color: transparent;
+		}
+
+		.add-color {
+			background-color: plum;
+		}
+
+	</style>
+	<script>
+		function changeColor(div) {
+			var childDiv = document.getElementById("parent").children;
+			for (var i = 0; i < childDiv.length; i++) {
+				childDiv[i].className = "no-color";
+			}
+			div.className = "add-color";
+		}
+
+		function on_load() {
+			var parentDiv = document.getElementById("parent");
+			parentDiv.style.width = "400px";
+			parentDiv.style.height = "400px";
+			var side = parseInt(parentDiv.style.width, 10);
+			parentDiv.style.border = "1px solid gray";
+			parentDiv.style.position = "relative";
+
+			for (var j = 0; j < 4; j++) {
+				for (var i = 0; i < 4; i++) {
+
+					var div = document.createElement("div");
+					div.style.width = String((side / 4) - 2) + "px";
+					div.style.height = String((side / 4) - 2) + "px";
+					var width = parseInt(div.style.width, 10);
+					div.style.border = "1px solid gray";
+					div.style.position = "absolute";
+					div.style.top = String(j * (width + 2)) + "px";
+					div.style.left = i * (width + 2);
+					var divCount = document.getElementsByTagName("div").length;
+					div.setAttribute("class", "no-color");
+					div.setAttribute("onclick", "changeColor(this)");
+
+					parentDiv.appendChild(div);
+				}
+			}
+
+			document.getElementById("parent").children[0].className = "add-color";
+		}
+	</script>
+</head>
+<body onload="on_load()">
+	<div id="parent"></div>
+</body>
+</html>
