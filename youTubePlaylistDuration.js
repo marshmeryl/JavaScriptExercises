@@ -9,7 +9,7 @@ for (var i = 0; i < length; i++) {
 	var timestamp = document.getElementsByClassName("timestamp")[i].childNodes;
 
 	var string = timestamp[0].innerHTML;
-	if (string.length < 5) {
+	if (string.length <= 5) {
 		string = "00:" + string;
 	}
 
